@@ -9,7 +9,7 @@ const port = 3000;
 const db = require('./db');
 const Contacts = require('./model');
 const { default: mongoose } = require('mongoose');
-db();
+//db();
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -41,7 +41,7 @@ app.post('/', async(req, res) => {
 })
 
 app.get('/', async(req, res) => {
-    const contacts = await Contacts.find();
+    const contacts = [];//await Contacts.find();
     res.json({message: 'OK', data: contacts.map( item =>{
          return {
             name: item.name ?? '',
