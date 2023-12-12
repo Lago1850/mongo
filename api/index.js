@@ -41,7 +41,11 @@ app.post('/', async(req, res) => {
 })
 
 app.get('/', async(req, res) => {
-    const contacts = [];//await Contacts.find();
+    const ss = db.db('test');
+    const dd = ss.collection('contacts');
+    const contacts = dd.find();
+
+    // const contacts = await Contacts.find();
     res.json({message: 'OK', data: contacts.map( item =>{
          return {
             name: item.name ?? '',
@@ -54,7 +58,7 @@ app.get('/', async(req, res) => {
 
 const server = app.listen(port, () => {
     const ipAddr = ip.address();
-    console.log(`Example app listening on port ${port} on ip ${ipAddr}`);
+    console.log(`Example app listening on port ${port} on ip ${ipAddr}`)
 })
 
 process.on('SIGINT', () => {
