@@ -1,4 +1,5 @@
 const path = require('path');
+const ip = require("ip");
 const express = require('express');
 const bodyParser = require('body-parser')
 
@@ -52,7 +53,8 @@ app.get('/', async(req, res) => {
 })
 
 const server = app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    const ipAddr = ip.address();
+    console.log(`Example app listening on port ${port} on ip ${ipAddr}`);
 })
 
 process.on('SIGINT', () => {
